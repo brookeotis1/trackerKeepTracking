@@ -134,6 +134,7 @@ function addEmployee() {
 }
 
 
+//INSERT INTO employee WHERE ? update employee
 
     function updateEmployee() {
     inquirer
@@ -153,7 +154,7 @@ function addEmployee() {
     .then(answer)
 }
     
-//INSERT INTO employee WHERE ? update employee
+
 //DELETE FROM employee WHERE ? update employee
 
 
