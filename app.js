@@ -17,11 +17,11 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
-    runSearch();
+    start();
   });
   
 
-  function runSearch() {
+  function start() {
     inquirer
       .prompt({
         name: "action",
@@ -40,29 +40,24 @@ connection.connect(function(err) {
       })
       .then(function(answer) {
         switch (answer.action) {
-        case "Add new employee":
-          addEmployee();
-          break;
-  
-        case "Add new department":
-          addDepartment();
-          break;
-  
-        case "Add employee new role":
-          addRole();
-          break;
-  
+        
         case "View departments":
           viewDepartments();
           break;
-              
+            
         case "View roles":
           viewRole();
           break;
-          
+
         case "View employees":
           viewEmployee();
-          break;  
+          break;
+        
+                
+        case "Add new employee":
+          addEmployee();
+          break;
+        
             
         case "Update employee role":
           updateEmployee();
@@ -74,6 +69,39 @@ connection.connect(function(err) {
         }
       });
     }
+
+
+//function viewDepartments()
+
+function viewDepartment() {
+    var query ="SELECT * FROM department"
+    connection.query(query, function (err,res){
+        if (err) throw err;
+        console.log(res);
+    });
+}
+
+//function viewRole()
+
+function viewRole() {
+    var query ="SELECT * FROM Role"
+    connection.query(query, function (err,res){
+        if (err) throw err;
+        console.log(res);
+    });
+}
+
+//function viewEmployee()??
+
+function viewEmployee() {
+    var query ="SELECT * FROM employee"
+    connection.query(query, function (err,res){
+        if (err) throw err;
+        console.log(res);
+    });
+}    
+
+
 
 //add employee
 
@@ -105,29 +133,6 @@ function addEmployee() {
     .then(answer)
 }
 
-//add roll - need add or update role?? - not sure how to (answer)
-function addRole() {
-    inquirer
-    .prompt([
-        {
-            name: role,
-            type: "input",
-            message: "Enter new role"
-        }
-    ])
-    .then(answer)
-
-//add department - need add or update department?? - not sure how to (answer)
-function addDepartment() {
-    inquirer
-    .prompt([
-        {
-            name: department,
-            type: "input",
-            message: "Enter new department"
-        }
-    ])
-    .then(answer)
 
 
     function updateEmployee() {
@@ -154,17 +159,5 @@ function addDepartment() {
 
 
 
-//function viewEmployee()??
-
-function viewEmployee() {
-    var query ="SELECT * FROM employee"
-    connection.query(query, function (err,res){
-        if (err) throw err;
-        console.log(res);
-    });
-}
 
 
-//function viewDepartments()
-
-//function viewRole()
