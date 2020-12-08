@@ -3,6 +3,24 @@ CREATE track_empDB;
 
 USE track_empDB;
 
+
+CREATE TABLE department (
+    department_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(30),
+    PRIMARY KEY (department_id)
+    
+    
+);
+
+CREATE TABLE role (
+    role_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(30),
+    salary DECIMAL,
+    department_id INT(10),
+    FOREIGN KEY (department_id) REFERENCES department(department_id)
+    
+);
+
 CREATE TABLE employee (
     employee_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(30),
@@ -10,25 +28,11 @@ CREATE TABLE employee (
     role_id INT(10),
     manager_id INT(10),
     PRIMARY KEY (employeeId)
+    FOREIGN KEY (department_id) REFERENCES department (department_id)
+    FOREIGN KEY (role_id) REFERENCES role (role_id)
 );
 
 
-CREATE TABLE role (
-    role_id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(30),
-    salary DECIMAL,
-    department_id INT(10),
-    PRIMARY KEY (role_id)
-    
-);
-
-
-CREATE TABLE department (
-    department_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(30),
-    PRIMARY KEY (department_id)
-    
-);
 
 INSERT INTO 
 	employee (first_name, last_name, role_id, manager_id)

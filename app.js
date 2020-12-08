@@ -148,12 +148,22 @@ function addDepartment() {
     .then(answer)
 }
     
+//INSERT INTO employee WHERE ? update employee
+//DELETE FROM employee WHERE ? update employee
 
 
 
 
+//function viewEmployee()??
 
-//function viewEmployee()
+function viewEmployee() {
+    var query ="SELECT * FROM employee"
+    connection.query(query, function (err,res){
+        if (err) throw err;
+        console.log(res);
+    });
+}
+
 
 //function viewDepartments()
 
